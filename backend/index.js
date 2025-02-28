@@ -1,4 +1,6 @@
 require('dotenv').config()
+const { info } = require('./utils/logger')
+const config = require('./utils/config')
 const express = require('express')
 const cors = require('cors')
 const Note = require('./models/note')
@@ -81,7 +83,7 @@ app.put('/api/notes/:id', (request, response, next) => {
     ).catch(error => next(error))
 })
 
-const PORT = process.env.PORT
+const PORT = config.PORT
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+    info(`Server running on port ${PORT}`)
 })
