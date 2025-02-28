@@ -8,7 +8,9 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "build:ui:server": "rm -rf dist && cd ../frontend/ && npm install && npm run build && cp -r dist ../backend",
-    "build:ui": "rm -rf dist && cd ../frontend/ && npm run build && cp -r dist ../backend"
+    "build:ui": "rm -rf dist && cd ../frontend/ && npm run build && cp -r dist ../backend",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "author": "Andreas Goss",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "mongoose": "^8.9.4"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^4.1.0",
     "nodemon": "^3.1.7"
   }
 }
