@@ -10,6 +10,11 @@ const error = (...params) => {
     }
 }
 
+const debug = (...params) => {
+    if (process.env.NODE_ENV === 'test') {
+        console.log(...params)
+    }
+}
 module.exports = {
-    info, error
+    info, error, debug
 }
