@@ -37,16 +37,17 @@ describe('app', () => {
         assert(contents.includes('HTML is easy'))
     })
 
-    test.only('a valid note can be added', async () => {
+    test('a valid note can be added', async () => {
         const users = await helper.usersInDb()
         const root = users[0]
+        const loginResponse = await api.post('/api/login').send( { username: root.username, password: 'sekret' } )
         const newNote = {
             content: 'async/await simplifies making async calls',
             important: true,
             userId: root.id
         }
 
-        await api.post('/api/notes').send(newNote).expect(201).expect('Content-type', /application\/json/)
+        await api.post('/api/notes').send(newNote).set('Authorization', `Bearer ${loginResponse.body.token}`).expect(201).expect('Content-type', /application\/json/)
 
         const notesAtEnd = await helper.notesInDb()
         assert.strictEqual(notesAtEnd.length, helper.initialNotes.length + 1)
@@ -57,12 +58,13 @@ describe('app', () => {
     test('note without content is not added', async () => {
         const users = await helper.usersInDb()
         const root = users[0]
+        const loginResponse = await api.post('/api/login').send( { username: root.username, password: 'sekret' } )
         const newNote = {
             important: true,
             userId: root.id,
         }
 
-        await api.post('/api/notes').send(newNote).expect(400)
+        await api.post('/api/notes').send(newNote).set('Authorization', `Bearer ${loginResponse.body.token}`).expect(400)
 
         const notesAtEnd = await helper.notesInDb()
         assert.strictEqual(notesAtEnd.length, helper.initialNotes.length)
