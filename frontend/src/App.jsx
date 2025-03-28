@@ -99,16 +99,16 @@ const App = () => {
   const loginForm = () => {
     return (
       <Togglable buttonLabel='login'>
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
+        <LoginForm
+          username={username}
+          password={password}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          handleSubmit={handleLogin}
+        />
       </Togglable>
     )
- } 
+  }
 
   return (
     <div>
@@ -119,10 +119,10 @@ const App = () => {
         <div>
           <p>{user.username} logged-in</p>
           <Togglable buttonLabel='new note'>
-          <NoteForm 
-            onSubmit={addNote}
-            value={newNote}
-            handleChange={handleNoteChange}
+            <NoteForm
+              onSubmit={addNote}
+              value={newNote}
+              handleChange={handleNoteChange}
             />
           </Togglable>
         </div>
