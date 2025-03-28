@@ -7,9 +7,9 @@ export default defineConfig({
   plugins: [react()],
 
   test: {
-    enviroment: 'jsdom',
+    environment: 'jsdom',
     globals: true,
-    setupFiles: './testSetup.js'
+    setupFiles: './src/test/testSetup.js'
   },
   server: {
     proxy: {
